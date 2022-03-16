@@ -17,4 +17,26 @@ public class Catalogue {
     @Column(name = "catalogue_name")
     private String catalogue_name;
 
+    public Integer getCatalogue_id() {
+        return catalogue_id;
+    }
+
+    public void setCatalogue_id(Integer catalogue_id) {
+        this.catalogue_id = catalogue_id;
+    }
+
+    public String getCatalogue_name() {
+        return catalogue_name;
+    }
+
+    public void setCatalogue_name(String catalogue_name) {
+        this.catalogue_name = catalogue_name;
+    }
+    public Catalogue()
+    {}
+    public Catalogue(int catalogue_id, String catalogue_name)
+    {
+        this.catalogue_id= catalogue_id;
+        this.catalogue_name= catalogue_name;
+    }
 }

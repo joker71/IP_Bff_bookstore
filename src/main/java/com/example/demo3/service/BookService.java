@@ -17,4 +17,8 @@ public class BookService {
     {
         return this.bookRepository.findAll();
     }
+
+    public Book findOne(int id) {
+        return this.bookRepository.getById(id);
+    }
 }
