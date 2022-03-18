@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Publisher {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "\"pulisher_id\"")
     private Integer pulisher_id;
 

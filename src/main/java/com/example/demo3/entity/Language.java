@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Language {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "\"language_id\"")
     private Integer language_id;
 
