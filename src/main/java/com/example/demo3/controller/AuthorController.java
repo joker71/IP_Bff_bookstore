@@ -5,6 +5,7 @@ import com.example.demo3.entity.Author;
 import com.example.demo3.exception.ResourceExeptionNotFound;
 import com.example.demo3.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -29,9 +30,10 @@ public class AuthorController {
         return result;
     }
     @PostMapping("/post")
-    public Author postAuthor(@RequestBody Author author)
+    public HttpStatus postAuthor(@RequestBody Author author)
     {
-        return this.authorService.saveAuthor(author);
+        this.authorService.saveAuthor(author);
+        return HttpStatus.CREATED;         
     }
     @PutMapping("/put")
     public BaseResponse<Author> putAuthor( @RequestBody Author author) throws ResourceExeptionNotFound

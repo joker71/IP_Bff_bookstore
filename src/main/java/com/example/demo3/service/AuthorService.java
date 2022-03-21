@@ -4,6 +4,7 @@ import com.example.demo3.entity.Author;
 import com.example.demo3.exception.ResourceExeptionNotFound;
 import com.example.demo3.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -26,8 +27,8 @@ public class AuthorService {
         return this.authorRepository.findById(id);
     }
     public Author saveAuthor(Author author)
-    {
-        return this.authorRepository.save(author);
+    { 
+        return this.authorRepository.save(author);    
     }
     public Map<String, Boolean> deleteAuthor(Integer id) throws ResourceExeptionNotFound
     {

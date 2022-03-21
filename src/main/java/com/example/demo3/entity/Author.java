@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Author {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "\"author_id\"")
     private Integer author_id;
 

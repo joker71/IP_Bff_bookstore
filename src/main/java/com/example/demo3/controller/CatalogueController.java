@@ -1,12 +1,10 @@
 package com.example.demo3.controller;
 
 import com.example.demo3.config.BaseResponse;
-import com.example.demo3.entity.Author;
 import com.example.demo3.entity.Catalogue;
 import com.example.demo3.exception.ResourceExeptionNotFound;
 import com.example.demo3.service.CatalogueService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
