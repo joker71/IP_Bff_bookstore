@@ -4,7 +4,6 @@ import com.example.demo3.entity.Author;
 import com.example.demo3.exception.ResourceExeptionNotFound;
 import com.example.demo3.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

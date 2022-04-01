@@ -24,9 +24,9 @@ public class LanguageService {
     {
         return this.languageRepository.findById(id);
     }
-    public Language saveLanguage(Language language)
+    public void saveLanguage(Language language)
     {
-        return this.languageRepository.save(language);
+        this.languageRepository.save(language);
     }
     public Map<String, Boolean> deleteLanguage(Integer id) throws ResourceExeptionNotFound
     {

@@ -8,7 +8,7 @@ public class Language {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "\"language_id\"")
+    @Column(name = "\"language_id\"", nullable = false)
     private Integer language_id;
 
     @Column(name = "\"language_code\"")

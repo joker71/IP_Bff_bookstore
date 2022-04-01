@@ -5,6 +5,7 @@ import com.example.demo3.entity.Catalogue;
 import com.example.demo3.exception.ResourceExeptionNotFound;
 import com.example.demo3.service.CatalogueService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -34,8 +35,9 @@ public class CatalogueController {
        return this.catalogueService.deleteCatalogue(id);
     }
     @PostMapping("/post")
-    public Catalogue postCatalog(@RequestBody Catalogue catalogue){
-        return  this.catalogueService.saveCatalogue(catalogue);
+    public HttpStatus postCatalog(@RequestBody Catalogue catalogue){
+        this.catalogueService.saveCatalogue(catalogue);
+        return HttpStatus.CREATED;          
     }
     @PutMapping("/put")
     public BaseResponse<Catalogue> putAuthor(@RequestBody Catalogue catalogue) throws ResourceExeptionNotFound

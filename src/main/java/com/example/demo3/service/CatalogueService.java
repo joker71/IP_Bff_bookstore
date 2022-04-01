@@ -25,9 +25,9 @@ public class CatalogueService {
     {
         return this.catalogueRepository.findById(id);
     }
-    public Catalogue saveCatalogue(Catalogue catalogue)
+    public void saveCatalogue(Catalogue catalogue)
     {
-        return this.catalogueRepository.save(catalogue);
+        this.catalogueRepository.save(catalogue);
     }
     public Map<String, Boolean> deleteCatalogue(Integer id) throws ResourceExeptionNotFound
     {

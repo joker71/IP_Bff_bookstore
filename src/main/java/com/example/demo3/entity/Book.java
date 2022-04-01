@@ -8,8 +8,8 @@ import java.util.Date;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "\"book_id\"")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "\"book_id\"", nullable = false)
     private Integer book_id;
 
     @Column(name = "title")

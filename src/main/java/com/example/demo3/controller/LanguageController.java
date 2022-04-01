@@ -5,6 +5,7 @@ import com.example.demo3.entity.Language;
 import com.example.demo3.exception.ResourceExeptionNotFound;
 import com.example.demo3.service.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -29,9 +30,10 @@ public class LanguageController {
         return result;
     }
     @PostMapping("/post")
-    public Language postLanguage(@RequestBody Language Language)
-    {
-        return this.languageService.saveLanguage(Language);
+    public HttpStatus postLanguage(@RequestBody Language Language)
+    { 
+        this.languageService.saveLanguage(Language);
+        return HttpStatus.CREATED;         
     }
     @PutMapping("/put")
     public BaseResponse<Language> putLanguage(@RequestBody Language Language) throws ResourceExeptionNotFound
