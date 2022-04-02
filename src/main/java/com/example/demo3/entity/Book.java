@@ -15,6 +15,9 @@ public class Book {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "stock")
+    private Integer stock;
+
     @Column(name = "isbn13")
     private String isbn13;
 
@@ -132,5 +135,13 @@ public class Book {
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 }
