@@ -1,13 +1,10 @@
 package com.example.demo3.entity;
 
+
+
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="custom_order")
@@ -15,20 +12,55 @@ public class Order {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
+	@Column(name="order_id")
 	private Integer id;
-	
-	@Column(name="user_id")
-	private Integer userId;
-	
-	@Column(name="orderDate")
-	private Date orderDate;
-	
-	@Column(name="total_amount")
-	private Double totalAmount;
-	
-	@Column(name="shipping_address")
-	private String shippingAddress;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name= "custom_id")
+	Custom custom;
+
+	@Column(name="order_date")
+	Date order_date;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "shipping_method_id")
+	ShippingMethor shippingMethor;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name= "dest_address_id")
+	Address address;
+
+	public Custom getCustom() {
+		return custom;
+	}
+
+	public void setCustom(Custom custom) {
+		this.custom = custom;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Date getOrder_date() {
+		return order_date;
+	}
+
+	public void setOrder_date(Date order_date) {
+		this.order_date = order_date;
+	}
+
+	public ShippingMethor getShippingMethor() {
+		return shippingMethor;
+	}
+
+	public void setShippingMethor(ShippingMethor shippingMethor) {
+		this.shippingMethor = shippingMethor;
+	}
 
 	public Integer getId() {
 		return id;
@@ -37,36 +69,5 @@ public class Order {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-	public Date getOrderDate() {
-		return orderDate;
-	}
-
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
-	}
-
-	public Double getTotalAmount() {
-		return totalAmount;
-	}
-
-	public void setTotalAmount(Double totalAmount) {
-		this.totalAmount = totalAmount;
-	}
-
-	public String getShippingAddress() {
-		return shippingAddress;
-	}
-
-	public void setShippingAddress(String shippingAddress) {
-		this.shippingAddress = shippingAddress;
-	}
+	public Order(){}
 }
