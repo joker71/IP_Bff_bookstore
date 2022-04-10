@@ -7,7 +7,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name="custom_order")
+@Table(name="cust_order")
 public class Order {
 
 	@Id
@@ -16,7 +16,7 @@ public class Order {
 	private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name= "custom_id")
+	@JoinColumn(name= "customer_id")
 	Custom custom;
 
 	@Column(name="order_date")
@@ -30,7 +30,15 @@ public class Order {
 	@JoinColumn(name= "dest_address_id")
 	Address address;
 
-	public Custom getCustom() {
+	public Order(Integer id, Custom custom, Date order_date, ShippingMethor shippingMethor, Address address) {
+        this.id = id;
+        this.custom = custom;
+        this.order_date = order_date;
+        this.shippingMethor = shippingMethor;
+        this.address = address;
+    }
+
+    public Custom getCustom() {
 		return custom;
 	}
 

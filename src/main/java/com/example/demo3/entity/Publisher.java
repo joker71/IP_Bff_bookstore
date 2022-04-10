@@ -8,7 +8,7 @@ public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "\"pulisher_id\"", nullable = false)
+    @Column(name = "\"publisher_id\"", nullable = false)
     private Integer pulisher_id;
 
     @Column(name = "publisher_name")

@@ -10,7 +10,7 @@ public class Custom {
     @Column(name="customer_id")
     Integer customer_id;
 
-    @Column(name= "fist_name")
+    @Column(name= "first_name")
     String fist_name;
 
     @Column(name= "last_name")
