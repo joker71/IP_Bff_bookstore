@@ -1,6 +1,7 @@
 package com.example.demo3.controller;
 
 import com.example.demo3.entity.Order;
+import com.example.demo3.entity.ShippingMethor;
 import com.example.demo3.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,12 @@ public class OrderController {
     public List<Order> getAll()
     {
         return this.orderService.getAllOrder();
+    }
+
+    @GetMapping("/shipping")
+    public List<ShippingMethor> getShippingMethol()
+    {
+        return this.orderService.getShippingMethor();
     }
 
 }

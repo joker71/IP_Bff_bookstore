@@ -1,7 +1,4 @@
 package com.example.demo3.entity;
-
-import org.springframework.data.relational.core.sql.In;
-
 import javax.persistence.*;
 @Entity
 @Table(name = "shipping_method")
@@ -9,13 +6,13 @@ public class ShippingMethor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "method_id")
-    Integer method_id;
+    private Integer method_id;
 
     @Column(name= "method_name")
-    String method_name;
+    private String method_name;
 
     @Column(name = "cost")
-    Integer cost;
+    private Integer cost;
 
     public Integer getCost() {
         return cost;
