@@ -9,18 +9,18 @@ public class Orderline {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "line_id")
-    Integer line_id;
+    private Integer line_id;
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "oder_id")
-    Order order;
+    private Order order;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
-    Book book;
+    private Book book;
 
     @Column(name = "price")
-    Integer price;
+    private Integer price;
 
     public Orderline(){}
     public Orderline(Integer line_id, Order order, Book book, Integer price){

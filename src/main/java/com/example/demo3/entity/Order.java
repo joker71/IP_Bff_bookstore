@@ -17,18 +17,18 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name= "customer_id")
-	Custom custom;
+	private Custom custom;
 
 	@Column(name="order_date")
-	Date order_date;
+	private Date order_date;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "shipping_method_id")
-	ShippingMethor shippingMethor;
+	private ShippingMethor shippingMethor;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name= "dest_address_id")
-	Address address;
+	private Address address;
 
 	public Order(Integer id, Custom custom, Date order_date, ShippingMethor shippingMethor, Address address) {
         this.id = id;

@@ -7,16 +7,16 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "address_id")
-    Integer address_id;
+    private Integer address_id;
 
     @Column(name= "street_number")
-    String streetNumber;
+    private String streetNumber;
 
     @Column(name= "street_name")
-    String streetName;
+    private String streetName;
 
     @Column(name= "city")
-    String city;
+    private String city;
 
     public Address(){}
     public Address(Integer address_id, String streetName, String streetNumber, String city)
