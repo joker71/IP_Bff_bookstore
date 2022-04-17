@@ -5,6 +5,9 @@ import com.example.demo3.entity.Author;
 import com.example.demo3.exception.ResourceExeptionNotFound;
 import com.example.demo3.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +24,7 @@ public class AuthorController {
     AuthorService authorService;
 
     @GetMapping("/get")
-    public List<Author> showAll(){return this.authorService.getAll();}
+    public Page<Author> showAll(Pageable pageable){return this.authorService.getAll(pageable);}
 
     @GetMapping("/get/{id}")
     public Optional<Author> getAuthor(@PathVariable Integer id)
