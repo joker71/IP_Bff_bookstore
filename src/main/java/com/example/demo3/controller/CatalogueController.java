@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/catalogue")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CatalogueController {
     @Autowired
     private CatalogueService catalogueService;

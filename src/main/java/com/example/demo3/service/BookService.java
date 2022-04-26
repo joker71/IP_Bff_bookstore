@@ -4,6 +4,8 @@ import com.example.demo3.entity.Book;
 import com.example.demo3.exception.ResourceExeptionNotFound;
 import com.example.demo3.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -17,9 +19,9 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    public List<Book> getAll()
+    public Page<Book> getAll(Pageable pageable)
     {
-        return this.bookRepository.findAll();
+        return this.bookRepository.findAll(pageable);
     }
 
     public Optional<Book> findOne(int id) {

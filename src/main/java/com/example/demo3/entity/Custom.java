@@ -1,6 +1,7 @@
 package com.example.demo3.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name= "customer")
@@ -18,6 +19,10 @@ public class Custom {
 
     @Column(name= "email")
     private String email;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+    private Collection<Address> address;
 
     public Custom(){}
     public Custom(Integer customer_id, String last_name, String fist_name )
@@ -56,5 +61,13 @@ public class Custom {
 
     public void setLast_name(String last_name) {
         this.last_name = last_name;
+    }
+
+    public Collection<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(Collection<Address> address) {
+        this.address = address;
     }
 }
