@@ -1,10 +1,9 @@
 package com.example.demo3.service;
 
-import com.example.demo3.entity.Book;
 import com.example.demo3.entity.Order;
 import com.example.demo3.entity.OrderHistory;
 import com.example.demo3.exception.ResourceExeptionNotFound;
-import com.example.demo3.repository.Status;
+import com.example.demo3.repository.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +14,11 @@ import java.util.Map;
 @Service
 public class OrderStatusService {
     @Autowired
-    Status status;
+    StatusRepository status;
 
     public List<OrderHistory> getAll(Order order)
     {
-        return this.status.findByOrder(order);
+        return this.status.findAllByOrder(order);
     }
     public OrderHistory saveOrderHistory(OrderHistory oh)
     {

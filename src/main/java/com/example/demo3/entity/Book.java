@@ -29,11 +29,15 @@ public class Book {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name= "\"catalogue_id\"")
-    private Catalogue Catalogue;
+    private Catalogue catalogue;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name= "\"language_id\"")
     private Language language;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name= "\"author\"")
+    private Author author;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name= "\"publisher_id\"")
@@ -46,7 +50,7 @@ public class Book {
     private int price;
 
     public Book(){}
-    public Book(int book_id, String title, String isbn13,int num_pages, Date publication_date, String img, int price)
+    public Book(int book_id, String title, String isbn13,int num_pages, Date publication_date, String img,Author author ,int price, Catalogue catalogue)
     {
         this.book_id= book_id;
         this.price= price;
@@ -54,6 +58,8 @@ public class Book {
         this.isbn13 = isbn13;
         this.num_pages= num_pages;
         this.img= img;
+        this.author= author;
+        this.catalogue = catalogue;
         this.publication_date= publication_date;
     }
 
@@ -90,11 +96,11 @@ public class Book {
     }
 
     public com.example.demo3.entity.Catalogue getCatalogue() {
-        return Catalogue;
+        return catalogue;
     }
 
     public void setCatalogue(com.example.demo3.entity.Catalogue catalogue) {
-        Catalogue = catalogue;
+        this.catalogue = catalogue;
     }
 
     public int getNum_pages() {

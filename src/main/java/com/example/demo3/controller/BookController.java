@@ -1,7 +1,6 @@
 package com.example.demo3.controller;
 
 import com.example.demo3.config.BaseResponse;
-import com.example.demo3.entity.Author;
 import com.example.demo3.entity.Book;
 import com.example.demo3.exception.ResourceExeptionNotFound;
 import com.example.demo3.service.BookService;
@@ -30,10 +29,25 @@ public class BookController {
         return  this.bookService.getAll(pageable);
     }
 
+
     @GetMapping("/get/{id}")
     public Optional<Book> getById(@PathVariable Integer id)
     {
         return this.bookService.findOne(id);
+    }
+
+    @GetMapping("/catalogue/{id}")
+    public Page<Book> getByCatalogue(@PathVariable Integer id, Pageable pageable) throws ResourceExeptionNotFound {
+        return this.bookService.getByCatalogue(id, pageable);
+    }
+    @GetMapping("/author/{id}")
+    public Page<Book> getByAuthor(@PathVariable Integer id, Pageable pageable) throws ResourceExeptionNotFound {
+        return this.bookService.getByAuthor(id, pageable);
+    }
+    @GetMapping("/publisher/{id}")
+    public Page<Book> getByPublisher(@PathVariable Integer id, Pageable pageable) throws ResourceExeptionNotFound {
+        return this.bookService.getByPublisher(
+                id, pageable);
     }
 
     @PostMapping("/post")

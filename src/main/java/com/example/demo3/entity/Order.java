@@ -2,6 +2,8 @@ package com.example.demo3.entity;
 
 
 
+import org.springframework.data.relational.core.sql.In;
+
 import java.util.Date;
 
 import javax.persistence.*;
@@ -15,30 +17,29 @@ public class Order {
 	@Column(name="order_id")
 	private Integer id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
 	@JoinColumn(name= "customer_id")
 	private Custom custom;
 
 	@Column(name="order_date")
 	private Date order_date;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "shipping_method_id")
-	private ShippingMethor shippingMethor;
+	@Column(name = "shipping_method_id")
+	private Integer shipping_method_id;
 
-	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name= "dest_address_id")
-	private Address address;
+	private Integer dest_address_id;
 
-	public Order(Integer id, Custom custom, Date order_date, ShippingMethor shippingMethor, Address address) {
+	public Order(Integer id, Custom custom, Date order_date, Integer shippingMethor, Integer address) {
         this.id = id;
         this.custom = custom;
         this.order_date = order_date;
-        this.shippingMethor = shippingMethor;
-        this.address = address;
+		this.dest_address_id = address;
+		this.shipping_method_id = shippingMethor;
+
     }
 
-    public Custom getCustom() {
+	public Custom getCustom() {
 		return custom;
 	}
 
@@ -46,13 +47,6 @@ public class Order {
 		this.custom = custom;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
 
 	public Date getOrder_date() {
 		return order_date;
@@ -62,12 +56,20 @@ public class Order {
 		this.order_date = order_date;
 	}
 
-	public ShippingMethor getShippingMethor() {
-		return shippingMethor;
+	public Integer getDest_address_id() {
+		return dest_address_id;
 	}
 
-	public void setShippingMethor(ShippingMethor shippingMethor) {
-		this.shippingMethor = shippingMethor;
+	public void setDest_address_id(Integer dest_address_id) {
+		this.dest_address_id = dest_address_id;
+	}
+
+	public Integer getShipping_method_id() {
+		return shipping_method_id;
+	}
+
+	public void setShipping_method_id(Integer shipping_method_id) {
+		this.shipping_method_id = shipping_method_id;
 	}
 
 	public Integer getId() {
