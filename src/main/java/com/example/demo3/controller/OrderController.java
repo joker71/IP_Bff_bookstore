@@ -1,13 +1,12 @@
 package com.example.demo3.controller;
 
+import com.example.demo3.dto.OderLineDTO;
 import com.example.demo3.entity.Order;
-import com.example.demo3.entity.Orderline;
 import com.example.demo3.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +28,7 @@ public class OrderController {
         return  this.orderService.customOrder(id, p);
     }
     @GetMapping("/line/{id}")
-    public List<Orderline> getOrderLines(@PathVariable int id) throws Exception {
+    public List<OderLineDTO> getOrderLines(@PathVariable int id) throws Exception {
         return  this.orderService.getOrderLine(id);
     }
     @GetMapping("/detail/{id}")

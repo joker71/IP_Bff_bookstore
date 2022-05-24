@@ -1,5 +1,6 @@
 package com.example.demo3.service;
 
+import com.example.demo3.dto.OderLineDTO;
 import com.example.demo3.entity.*;
 import com.example.demo3.exception.ResourceExeptionNotFound;
 import com.example.demo3.repository.*;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,9 +61,14 @@ public class OrderService {
         this.orderlineRepository.delete(orderline);
     }
 
-    public List<Orderline> getOrderLine(Integer id) throws Exception {
+    public List<OderLineDTO> getOrderLine(Integer id) throws Exception {
         Order order = orderRepository.findById(id).orElseThrow(() -> new ResourceExeptionNotFound("Order is not found " + id));
-        return this.orderlineRepository.findOrderlineByOrder(order);
+        List<Orderline> orderlineList = this.orderlineRepository.findOrderlineByOrder(order);
+        List<OderLineDTO> lineDTOS = new ArrayList<>();
+        for(int i = 0; i< orderlineList.size(); i++) {
+            lineDTOS.add(new OderLineDTO(orderlineList.get(i)));
+        }
+        return  lineDTOS;
     }
 
     public Page<Order> customOrder(Integer id, Pageable pageable) throws Exception {
