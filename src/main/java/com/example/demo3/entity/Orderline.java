@@ -12,7 +12,7 @@ public class Orderline {
     private Integer line_id;
 
     @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "oder_id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @OneToOne(cascade = CascadeType.ALL)

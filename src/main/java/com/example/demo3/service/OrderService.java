@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -31,6 +32,9 @@ public class OrderService {
         return this.orderRepository.findAll(pageable);
     }
 
+    public Optional<Order> getOrderDetails(Integer id) {
+        return  this.orderRepository.findById(id);
+    }
     public List<ShippingMethor> getShippingMethor() {
         return this.shippingMethorRepository.findAll();
     }
