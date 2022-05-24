@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
-
 import java.util.List;
 
 @Service
@@ -27,18 +26,16 @@ public class OrderService {
 
     @Autowired
     ShippingMethorRepository shippingMethorRepository;
-    public Page<Order> getAllOrder(Pageable pageable)
-    {
-        return  this.orderRepository.findAll(pageable);
+
+    public Page<Order> getAllOrder(Pageable pageable) {
+        return this.orderRepository.findAll(pageable);
     }
 
-    public List<ShippingMethor> getShippingMethor()
-    {
+    public List<ShippingMethor> getShippingMethor() {
         return this.shippingMethorRepository.findAll();
     }
 
-    public void saveOrder(Order order)
-    {
+    public void saveOrder(Order order) {
         UtilService utilService = new UtilService();
         Order savedOrder = this.orderRepository.save(order);
         OrderStatus status = this.orderStatusRepository.getById(1);
@@ -48,14 +45,25 @@ public class OrderService {
         newOrderHistory.setOrderStatus(status);
         this.statusRepository.save(newOrderHistory);
     }
-    public void saveOrderline(Orderline orderline)
-    {
+
+    public void saveOrderline(Orderline orderline) {
         this.orderlineRepository.save(orderline);
     }
-    public Page<Order> customOrder(Integer id, Pageable pageable) throws Exception
-    {
+
+    public void deleteOrderLine(Integer id) throws Exception{
+        Orderline orderline = this.orderlineRepository.findById(id).orElseThrow(() -> new ResourceExeptionNotFound("Order id not found " + id));
+        this.orderlineRepository.delete(orderline);
+    }
+
+    public List<Orderline> getOrderLine(Integer id) throws Exception {
+        Order order = orderRepository.findById(id).orElseThrow(() -> new ResourceExeptionNotFound("Order is not found " + id));
+        return this.orderlineRepository.findOrderlineByOrder(order);
+    }
+
+    public Page<Order> customOrder(Integer id, Pageable pageable) throws Exception {
         Custom custom = customRepository.findById(id).orElseThrow(() -> new ResourceExeptionNotFound("Acount id is not found" + id));
         return this.orderRepository.findOrdersByCustom(custom, pageable);
     }
+
 
 }

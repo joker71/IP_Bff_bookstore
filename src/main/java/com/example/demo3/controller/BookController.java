@@ -1,6 +1,7 @@
 package com.example.demo3.controller;
 
 import com.example.demo3.config.BaseResponse;
+import com.example.demo3.entity.Author;
 import com.example.demo3.entity.Book;
 import com.example.demo3.exception.ResourceExeptionNotFound;
 import com.example.demo3.service.BookService;
@@ -61,11 +62,17 @@ public class BookController {
     public BaseResponse<Book> putBook(@RequestBody Book book) throws ResourceExeptionNotFound
     {
         Integer id= book.getBook_id();
-        Book book1= this.bookService.findOne(id).orElseThrow(()-> new ResourceExeptionNotFound("Can find this book "+ id));
-        this.bookService.Save(book);
-        return new BaseResponse<Book>(true, Arrays.asList("Cap nhat thong tin thanh cong"), 200, null);
+        Optional<Book> data= this.bookService.findOne(id);
+        if(!data.isPresent())
+        {
+            return new BaseResponse<Book>(false, Arrays.asList("Tac gia không tồn tại"), 400, null);
+        }
+        else
+        {
+            this.bookService.Save(book);
+            return new BaseResponse<Book>(true, Arrays.asList("Cap nhat thong tin thanh cong"), 200, null);
+        }
     }
-    
     @DeleteMapping("/delete/{id}")
     public Map<String, Boolean> deleteAuthor(@PathVariable int id) throws ResourceExeptionNotFound
     {
