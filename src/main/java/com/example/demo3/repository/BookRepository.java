@@ -25,4 +25,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query(value = "SELECT b FROM Book b WHERE b.publisher = :publisher ")
     Page<Book> findBooksByPublisher(@Param("publisher") Publisher publisher, Pageable pageable);
 
+    Page<Book> findBookByTitleContaining(String title, Pageable pageable);
+
 }

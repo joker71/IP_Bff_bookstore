@@ -8,6 +8,7 @@ import com.example.demo3.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,15 +26,13 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping("/get")
-    public Page<Book> getAll(Pageable pageable)
-    {
-        return  this.bookService.getAll(pageable);
+    public Page<Book> getAll(Pageable pageable) {
+        return this.bookService.getAll(pageable);
     }
 
 
     @GetMapping("/get/{id}")
-    public Optional<Book> getById(@PathVariable Integer id)
-    {
+    public Optional<Book> getById(@PathVariable Integer id) {
         return this.bookService.findOne(id);
     }
 
@@ -41,10 +40,12 @@ public class BookController {
     public Page<Book> getByCatalogue(@PathVariable Integer id, Pageable pageable) throws ResourceExeptionNotFound {
         return this.bookService.getByCatalogue(id, pageable);
     }
+
     @GetMapping("/author/{id}")
     public Page<Book> getByAuthor(@PathVariable Integer id, Pageable pageable) throws ResourceExeptionNotFound {
         return this.bookService.getByAuthor(id, pageable);
     }
+
     @GetMapping("/publisher/{id}")
     public Page<Book> getByPublisher(@PathVariable Integer id, Pageable pageable) throws ResourceExeptionNotFound {
         return this.bookService.getByPublisher(
@@ -52,31 +53,32 @@ public class BookController {
     }
 
     @PostMapping("/post")
-    public HttpStatus postBook(@RequestBody Book book)
-    {
+    public HttpStatus postBook(@RequestBody Book book) {
         this.bookService.Save(book);
         return HttpStatus.CREATED;
     }
 
     @PutMapping("/put")
-    public BaseResponse<Book> putBook(@RequestBody Book book) throws ResourceExeptionNotFound
-    {
-        Integer id= book.getBook_id();
-        Optional<Book> data= this.bookService.findOne(id);
-        if(!data.isPresent())
-        {
+    public BaseResponse<Book> putBook(@RequestBody Book book) throws ResourceExeptionNotFound {
+        Integer id = book.getBook_id();
+        Optional<Book> data = this.bookService.findOne(id);
+        if (!data.isPresent()) {
             return new BaseResponse<Book>(false, Arrays.asList("Tac gia không tồn tại"), 400, null);
-        }
-        else
-        {
+        } else {
             this.bookService.Save(book);
             return new BaseResponse<Book>(true, Arrays.asList("Cap nhat thong tin thanh cong"), 200, null);
         }
     }
+
     @DeleteMapping("/delete/{id}")
-    public Map<String, Boolean> deleteAuthor(@PathVariable int id) throws ResourceExeptionNotFound
-    {
+    public Map<String, Boolean> deleteAuthor(@PathVariable int id) throws ResourceExeptionNotFound {
         return this.bookService.deleteBook(id);
+    }
+
+    @GetMapping("/search")
+    public Page<Book> searchBook(@RequestHeader("key") String keyword, Pageable pageable) {
+        System.out.print(keyword);
+        return this.bookService.searchBook(keyword, pageable);
     }
 
 

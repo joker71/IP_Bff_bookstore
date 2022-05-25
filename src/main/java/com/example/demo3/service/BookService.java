@@ -74,4 +74,8 @@ public class BookService {
         return response;
     }
 
+    public Page<Book> searchBook(String keyword, Pageable pageable) {
+        return  this.bookRepository.findBookByTitleContaining(keyword, pageable);
+    }
+
 }
