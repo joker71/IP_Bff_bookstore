@@ -11,10 +11,8 @@ public class Orderline {
     @Column(name = "line_id")
     private Integer line_id;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "order_id")
     @Column(name = "order_id")
-    private Order order;
+    private Integer order;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
@@ -24,7 +22,7 @@ public class Orderline {
     private Integer price;
 
     public Orderline(){}
-    public Orderline(Integer line_id, Order order, Book book, Integer price){
+    public Orderline(Integer line_id, Integer order, Book book, Integer price){
         this.book= book;
         this.line_id= line_id;
         this.order= order;
@@ -47,14 +45,6 @@ public class Orderline {
         return line_id;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
     public void setPrice(Integer price) {
         this.price = price;
     }
@@ -63,4 +53,11 @@ public class Orderline {
         return price;
     }
 
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
 }
