@@ -3,19 +3,20 @@ package com.example.demo3.controller;
 import com.example.demo3.config.BaseResponse;
 import com.example.demo3.entity.Author;
 import com.example.demo3.entity.Book;
+import com.example.demo3.entity.Stock;
 import com.example.demo3.exception.ResourceExeptionNotFound;
 import com.example.demo3.service.BookService;
+import com.example.demo3.service.FirebaseImageService;
+import com.example.demo3.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/book")
@@ -24,6 +25,12 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private StockService stockService;
+
+    @Autowired
+    private FirebaseImageService imageService;
 
     @GetMapping("/get")
     public Page<Book> getAll(Pageable pageable) {
@@ -48,13 +55,26 @@ public class BookController {
 
     @GetMapping("/publisher/{id}")
     public Page<Book> getByPublisher(@PathVariable Integer id, Pageable pageable) throws ResourceExeptionNotFound {
-        return this.bookService.getByPublisher(
-                id, pageable);
+        return this.bookService.getByPublisher(id, pageable);
+    }
+
+    @GetMapping("/stock")
+    public Page<Stock> getStocks(Pageable pageable){
+        return this.stockService.getAll(pageable);
+    }
+
+    @GetMapping("/stock/{id}")
+    public List<Stock> getStockHistory(@PathVariable Integer id) {
+        return this.stockService.getByProduct(id);
     }
 
     @PostMapping("/post")
     public HttpStatus postBook(@RequestBody Book book) {
-        this.bookService.Save(book);
+        Book savedBook = this.bookService.SaveBook(book);
+        Integer num_item = savedBook.getStock();
+        Integer price = savedBook.getPrice();
+        Stock stock = new Stock(0, savedBook.getBook_id(), savedBook.getStock(), new Date(), price * num_item);
+        stockService.save(stock);
         return HttpStatus.CREATED;
     }
 
