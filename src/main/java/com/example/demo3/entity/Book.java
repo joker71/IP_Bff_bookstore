@@ -2,6 +2,7 @@ package com.example.demo3.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "book")
@@ -48,6 +49,7 @@ public class Book {
 
     @Column(name = "\"price\"")
     private int price;
+
 
     public Book(){}
     public Book(int book_id, String title, String isbn13,int num_pages, Date publication_date, String img,Author author ,int price, Catalogue catalogue)
@@ -149,5 +151,13 @@ public class Book {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }
