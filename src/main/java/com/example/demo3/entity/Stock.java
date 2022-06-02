@@ -18,8 +18,8 @@ public class Stock {
     @Column(name = "number_item")
     private Integer number_item;
 
-    @Column(name = "status_date")
-    private Date status_date;
+    @Column(name = "statusDate")
+    private Date statusDate;
 
     @Column(name = "input_price")
     private Integer input_price;
@@ -35,20 +35,20 @@ public class Stock {
     public Stock() {
     }
 
-    public Stock(Integer store_id, Integer book_id, Integer number_item, Date status_date, Integer input_price) {
+    public Stock(Integer store_id, Integer book_id, Integer number_item, Date statusDate, Integer input_price) {
         this.store_id= store_id;
         this.book_id = book_id;
         this.number_item = number_item;
-        this.status_date = status_date;
+        this.statusDate = statusDate;
         this.input_price = input_price;
     }
 
-    public Date getStatus_date() {
-        return status_date;
+    public Date getstatusDate() {
+        return statusDate;
     }
 
-    public void setStatus_date(Date status_date) {
-        this.status_date = status_date;
+    public void setstatusDate(Date statusDate) {
+        this.statusDate = statusDate;
     }
 
     public Integer getInput_price() {

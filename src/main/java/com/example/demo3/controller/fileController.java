@@ -6,26 +6,26 @@ import com.example.demo3.service.FirebaseImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
 
-@Controller
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class fileController {
     @Autowired
     private FirebaseImageService imageService;
     @Autowired
     private BookService bookService;
 
-    @PostMapping("/profile/pic")
-    public ResponseEntity create(@RequestParam(name = "file") MultipartFile[] files, @RequestParam(name = "id") String id)  {
+    @PostMapping("/profile/pic/{id}")
+    public ResponseEntity create(@RequestParam(name = "file") MultipartFile file, @PathVariable int id)  {
 
         System.out.println(id);
-        int numberId = Integer.parseInt(id);
-        for (MultipartFile file : files) {
+        int numberId = id;
+
 
             try {
 
@@ -43,7 +43,7 @@ public class fileController {
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
-        }
+
 
         return ResponseEntity.ok().build();
     }
