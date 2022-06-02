@@ -90,9 +90,9 @@ public class BookController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
-    public Map<String, Boolean> deleteAuthor(@PathVariable int id) throws ResourceExeptionNotFound {
-        return this.bookService.deleteBook(id);
+    @PutMapping("/delete/{id}")
+    public Book deleteBook(@PathVariable int id) throws ResourceExeptionNotFound {
+        return this.bookService.setDeleteFlag(id);
     }
 
     @GetMapping("/search")

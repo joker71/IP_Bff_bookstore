@@ -24,6 +24,10 @@ public class AuthorService {
 
         return this.authorRepository.findAll(pageable);
     }
+    public List<Author> getAll()
+    {
+        return this.authorRepository.findAll();
+    }
     public Optional<Author> getById(int id)
     {
         return this.authorRepository.findById(id);

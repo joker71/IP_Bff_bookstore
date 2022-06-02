@@ -26,6 +26,8 @@ public class AuthorController {
 
     @GetMapping("/get")
     public Page<Author> showAll(Pageable pageable){return this.authorService.getAll(pageable);}
+    @GetMapping("/list")
+    public List<Author> getAll(){return this.authorService.getAll();}
 
     @GetMapping("/get/{id}")
     public Optional<Author> getAuthor(@PathVariable Integer id)

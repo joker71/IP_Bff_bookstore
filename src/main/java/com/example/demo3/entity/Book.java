@@ -50,9 +50,12 @@ public class Book {
     @Column(name = "\"price\"")
     private int price;
 
+    @Column(name = "\"delete_flag\"")
+    private int delete_flag;
+
 
     public Book(){}
-    public Book(int book_id, String title, String isbn13,int num_pages, Date publication_date, String img,Author author ,int price, Catalogue catalogue)
+    public Book(int book_id, String title, String isbn13,int num_pages, Date publication_date, String img,Author author ,int price, Catalogue catalogue, int delete_flog)
     {
         this.book_id= book_id;
         this.price= price;
@@ -62,6 +65,7 @@ public class Book {
         this.img= img;
         this.author= author;
         this.catalogue = catalogue;
+        this.delete_flag = delete_flog;
         this.publication_date= publication_date;
     }
 
@@ -159,5 +163,13 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public int getDelete_flag() {
+        return delete_flag;
+    }
+
+    public void setDelete_flag(int delete_flag) {
+        this.delete_flag = delete_flag;
     }
 }

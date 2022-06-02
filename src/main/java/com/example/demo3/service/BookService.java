@@ -63,7 +63,11 @@ public class BookService {
         return book;
     }
 
-
+    public Book setDeleteFlag(int id) throws ResourceExeptionNotFound{
+        Book book = this.bookRepository.findById(id).orElseThrow(() -> new ResourceExeptionNotFound("Not found this post" + id));
+        book.setDelete_flag(1);
+        return bookRepository.save(book);
+    }
     public void Save(Book book) {
         this.bookRepository.save(book);
     }

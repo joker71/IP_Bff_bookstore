@@ -18,7 +18,7 @@ public interface StockRepository extends JpaRepository<Stock, Integer> {
     @Query(value = "SELECT b FROM Stock b WHERE b.book_id = :book_id ")
     List<Stock> findStockByBook_id(@Param("book_id") Integer book_id);
 
-    @Query(value = "SELECT b FROM Stock b WHERE b.status_date = :status_date ")
+    @Query(value = "SELECT b FROM Stock b WHERE b.statusDate = :status_date ")
     List<Stock> findStockByStatus_date(@Param("status_date")Date status_date);
 
 }
