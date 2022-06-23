@@ -11,10 +11,8 @@ import com.example.demo3.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
@@ -67,7 +65,11 @@ public class BookController {
     public List<Stock> getStockHistory(@PathVariable Integer id) {
         return this.stockService.getByProduct(id);
     }
-
+    @PostMapping("/stock/post")
+    public HttpStatus postStock(@RequestBody Stock stock){
+        this.stockService.save(stock);
+        return HttpStatus.CREATED;
+    }
     @PostMapping("/post")
     public HttpStatus postBook(@RequestBody Book book) {
         Book savedBook = this.bookService.SaveBook(book);
